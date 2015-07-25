@@ -43,7 +43,21 @@ cacheSolve <- function(x, ...) {
   i
 }
 
+## Test Script
+# The following test script tests the functionality for this assignment. The script:
+#    * creates a matrix called "myData"
+#    * initializes a makeCacheMatrix object and names it "dataSolved"
+#    * runs cacheSolve using the dataSolved object
+#    * deletes the inverse solution
+#    * re-creates the solution by running cacheSolve again
+#    * runs cacheSolve one more time to show that it is using a cached value
+
+
 myData <- matrix(c(1, 2, 3, 4), nrow = 2, ncol = 2, byrow = TRUE)
 dataSolved <- makeCacheMatrix(myData)
-cacheSolve(dataSolved)
+cacheSolve(dataSolved) ## This will print out "getting cached matrix data" because the data already exists from when the object was initialized
+dataSolved$deleteinverse() ## This deletes the inverse solution
+cacheSolve(dataSolved) ## This will print out "creating cached matrix data" because this is creating a new solution
+cacheSolve(dataSolved) ## This will print out "getting cached matrix data" because the data exists in the cache again
+
 
